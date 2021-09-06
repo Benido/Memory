@@ -1,0 +1,7 @@
+
+
+En tant que Noé, je veux pouvoir choisir le thème des cartes afin de personnaliser mon expérience
+En tant que Noé, je veux voir des animations afin de me distraire 
+En tant que Georgette, je veux pouvoir choisir la difficulté afin de passer un agréable moment sur le jeu
+En tant que Georgette, je veux pouvoir contrôler le nombre de coups afin d'évaluer ma performance
+En tant que Georgette, je veux pouvoir consulter mon meilleur score afin d'évaluer ma performance

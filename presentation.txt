@@ -1,0 +1,22 @@
+Un site d'une seule page permettant aux utilisateur d'effectuer une partie de Memory.
+Coeur de cible : 
+- jeunes enfants 
+- personnes agées 
+
+point-commun : faible maîtrise de l'outil informatique et de la navigation sur le web
+
+Intérêt :
+- développer et entraîner sa mémoire
+- se distraire
+
+Risques : 
+- ne pas s'amuser
+
+
+Cahier des charges : 
+
+Au chargement de la page, une modal nous permet de choisir le nombre de joueurs, le nombre de paires à jouer et le thème des cartes. Un clic sur le bouton "c'est parti" démarre la partie. 
+Un clic sur une carte dévoile l'image, un clic sur une deuxième carte dévoile la seconde image et si aucune paire n'est trouvée, déclence un compteur de 3 secondes avant de retourner de nouveau les deux cartes.
+Si une paire est trouvée, les cartes sont ôtées de la grille et ajoutée dans la zone du joueur.
+Un compteur affiche le nombre de tours joués.
+Quand la partie est terminée, modal de félicitation au joueur gagnant. Un bouton propose de rejouer.
