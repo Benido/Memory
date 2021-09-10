@@ -1,3 +1,56 @@
-.row > div {
+body {
+  background-color:#beaebf ;
+}
+
+h1, h4 {
+  color: #495059
+}
+
+h1 {
+  font-size: 5rem;
+  font-family: "californian FB Bold";
+  src: url("/Ressources/Polices/Californian FB/Californian\ FB\ Bold.ttf")
+}
+
+
+
+/*.col  {
   border: 1px solid;
+}*/
+
+.memory-card {
+  border: 1px solid wheat;
+  height: 100px;
+  width: 100px;   
+  background-image: url("Ressources/Images/vichy-bleu-410px.jpg");
+  background-size: contain;
+}
+
+.found-pairs {
+  border: 1px solid wheat;
+  height: 100px;
+  width: 100px;   
+  background: white;
+  background-size: contain;
+}
+
+.counter {
+  background-color: white;
+  max-width: 50px;  
+}
+
+#logo {
+  min-height: 5rem;   
+}
+
+#player-pairs { 
+}
+
+#bigger-font {
+  font-size: 6.5rem;
+}
+
+#rotate30 {
+  display:inline-block;
+  transform: translate(-5px) rotate(-20deg);  
 }
