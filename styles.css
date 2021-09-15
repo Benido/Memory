@@ -43,9 +43,9 @@ h1 {
   min-height: 5rem;   
 }
 
-#player-pairs { 
-}
 
+
+/*-------Title*/
 #bigger-font {
   font-size: 6.5rem;
 }
@@ -53,4 +53,9 @@ h1 {
 #rotate30 {
   display:inline-block;
   transform: translate(-5px) rotate(-20deg);  
+}
+/*--------*/
+
+#rules {
+  cursor: pointer;
 }

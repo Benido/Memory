@@ -1,39 +1,59 @@
+let nombrePaires = document.getElementById('pairs-selection')
+const selection = document.getElementById("selection-theme")
+const cardsGrid = document.getElementById("memory-card-grid")
+const buttonLetsGo = document.getElementById("button-lets-go")
 
+//La page lance une modale au chargement
+$(window).on("load",function(){
+  $("#start-modal").modal("show");
+})
 
-  //window.addEventListener("load", function(event) { ;
- // });
+/*//Ecoute du clic de lancement de partie sur la modale
+buttonLetsGo.addEventListener("click", () => {
+  alert('ça marche')
+})
+function test() {
+  alert(`il y a  paires`)
+  console.log(nombrePaires.value)
+}*/
 
+$("#pairs-selection").change(function () {
+  let val = $("#pairs-selection option:selected").val()
+  alert(val)
+})
+
+//La zone de jeu est initialisée avec le nombre de cartes correspondant aux paires et au thème choisis
+function createGrid(nbCartes) {  
+ alert('coucou' + nbCartes)
+ //for (let i=0; i < nbCartes; i++)  {
+   let wrapper = document.createElements("div")
+   wrapper.classList.add("col d-flex justify-content-center")
+   let card = document.createElements("div")
+   card.classList.add("memory-card shadow")
+   wrapper.append(card)
+   cardsGrid.append(wrapper)
+ //}
+}
 /*
-// Fisher - Yates Shuffle
+// Fisher-Yates Shuffle
 function shuffle(array) {
   var m = array.length, t, i;
-
   // While there remain elements to shuffle…
   while (m) {
-
     // Pick a remaining element…
     i = Math.floor(Math.random() * m--);
-
     // And swap it with the current element.
     t = array[m];
     array[m] = array[i];
     array[i] = t;
   }
-
   return array;
 }
 
-
-//Le script génère le nombre de paires que le joueur a déterminée, puis mélanges les valeurs dans une table.!
-function newTable () {
-  var pairs = parseInt(prompt("Combien de paires ?"), 10)
-  while (isNaN(pairs) && pairs > 0)
-  {
-    pairs = prompt("Merci d'entrer un entier. Combien de paires ?")
-  }
-
+//Le script génère le nombre de paires que le joueur a déterminée, puis mélange les valeurs dans une table.!
+function newTable() {
+  const pairs = nombrePaires.value
   let newTable = []
-
   for (let i = 1; i <= pairs; i++) {
     newTable.push(i) 
     newTable.push(i)
@@ -43,7 +63,7 @@ function newTable () {
 }
 
 let table = newTable()
-alert(table)
+//alert(table)
 
 //Chaque tour, le joueur peut saisir deux chiffres pour tenter d'assembler une paire. 
 function reveal (array) {
@@ -55,7 +75,7 @@ function reveal (array) {
   return chiffre
 }
 
-function newTurn (array) {
+function newTurn(array) {
   let index1 = reveal(array) -1
   let index2 = reveal(array) -1
   while (index2 === index1)
@@ -80,6 +100,5 @@ function newTurn (array) {
   return array
 }
 
-newTurn(table)
+/*newTurn(table)*/
 
-*/
