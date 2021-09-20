@@ -11,27 +11,18 @@
   rel="stylesheet" 
   integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" 
   crossorigin="anonymous">
-  <!--<link href="Ressources/bootstrap-5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">-->
   <link href="styles.css" rel="stylesheet" type="text/css">
- <script
-  src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-  crossorigin="anonymous"></script>  
-  <!--<script src="C:/Users/remib/Google Drive/Code\Memory/Ressources/bootstrap-5.1.0/dist/js/bootstrap.min.js"></script>-->
-  <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" 
-  integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" 
-  crossorigin="anonymous"></script>
-<script src="script.js"></script>
+
 </head>
 <body>
 <!-- Starting Modal -->
 <div class="modal" 
      id="start-modal" 
+     role="dialog"
      data-bs-backdrop="static" 
      data-bs-keyboard="false" 
      tabindex="-1" 
-     aria-labelledby="staticBackdropLabel" 
+     aria-labelledby="game-launch-modal" 
      aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -50,29 +41,29 @@
           <div class="row mb-3">
             <label for="pairs-selection" class="col-sm-4">Nombre de paires</label>
             <div class="col-sm-6">
-              <select class="form-select" aria-label="nombre de paires" name="pairs-selections" id="pairs-selection">                
-                <option selected value="8">8</option>
-                <option value="10">10</option>
-                <option value="12">12</option>
-                <option value="14">14</option>
-                <option value="16">16</option>
+              <select class="form-select" aria-label="nombre de paires" name="pairs-selection" id="pairs-selection">                
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
               </select>
             </div>
           </div>
           <div class="row">
             <label for="selection-theme" class="col-sm-4">Choisissez un thème</label>
             <div class="col-sm-6">
-              <select class="form-select" aria-label="selection d'un thème" id="selection-theme">
-                <option selected value="Vichy">Vichy</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+              <select class="form-select" aria-label="selection d'un thème" id="theme-selection">
+                <option selected value="vichy-bleu">Vichy</option>
+                <option value="japonais-rouge">Japonais</option>
+                <option value="tartan-noir">Tartan</option>
+                <option value="tarot-noir">Tarot</option>
               </select>
             </div>
           </div>                 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="button-lets-go" onclick="test()">C'est parti</button>       
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="button-lets-go">C'est parti</button>       
       </div>
     </div>
   </div>
@@ -142,25 +133,27 @@
         <div class="counter col shadow-sm">0</div>
       </div>
     </section> 
-    <section class="container-fluid" id="player-pairs">
-     <div class="row row-cols-3 row-cols-sm-4 row-cols-lg-6 justify-content-center gy-3">
-      <div class="col d-flex justify-content-center"></div>
-        <div class="found-pairs shadow"></div>    
-       <div class="col d-flex justify-content-center"></div>
-        <div class="found-pairs shadow"></div>
-       <div class="col d-flex justify-content-center"></div>
-        <div class="found-pairs shadow"></div>
+    <section class="container-fluid">
+     <div class="row row-cols-3 row-cols-sm-4 row-cols-lg-6 justify-content-center gy-3" id="found-pairs-grid-1">
 
-    </div>
+    </div>      
       
-      
-    </section>
-     
+    </section>     
 
       </div>
     </div>
 
   </main>
   <footer></footer> 
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>  
+  <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" 
+  integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" 
+  crossorigin="anonymous">
+</script>
+<script src="script.js"></script>
 </body>
 </html
