@@ -73,91 +73,70 @@ $("#button-lets-go").on("click", function () {
   createGrid(pairsNumber.val())
   let table = newTable(pairsNumber.val())
   giveNumber(table)
-  partyBegins()
+  gameBegins()
 })
 
-
-//Chaque tour, le joueur peut cliquer sur deux cartes pour tenter d'assembler une paire. 
-
-//Le clic révèle la face de la carte. Le nombre de clic est limité à 2
-function revealCards(counter, array) { 
-  $("#memory-card-grid").one("click", ".memory-card", (function() {
-    $(this).removeClass(`${themeSelection.val()}`)
-      let carte = $(this)
-      array.push(carte) 
-      counter++      
-      if (counter < 2) {
-        revealCards(counter, array)
-      }   
-      else if (array[0].attr("class") === array[1].attr("class")) {        
-       setTimeout(function() {
-        $(array[0]).hide()
-        $(array[1]).hide()
-        addFoundPairs($(this).attr("class"))
-        realPairsCounter--
-       }, 1000)    
-       return     
-      } else {
-        setTimeout(function() {        
-        $(array[0]).addClass(`${themeSelection.val()}`)
-        $(array[1]).addClass(`${themeSelection.val()}`)
-        }, 1000)  
-        return
-        }
-    }))
-}
-
-
-let i = 0
-let compare = []
 let realPairsCounter
+let revealed = []
+let counter = 0
 
-function partyBegins () {
+
+//la partie démarre et enchaîne les tours jusqu'à ce qu'il n'y ait plus de paire à trouver
+function gameBegins () {
   realPairsCounter = pairsNumber.val()
-  while (realPairsCounter > 0) {
-    revealCards(i, compare)
-  }
+  turn()   
+}
 
-/*  if (realPairsCounter > 0) {
-    revealCards(i, compare, realPairsCounter)
-  }*/
-    
-  
+function turn () {
+  if (realPairsCounter > 0) {
+  revealCards(counter, revealed) 
+  }
 }
 
 
 
-
-
-
-
-
-
-/*
-function newTurn(array) {
-  let index1 = reveal(array) -1
-  let index2 = reveal(array) -1
-  while (index2 === index1)
-  {
-    index2 = reveal(array)
-  }
-  
-  //Lorsque la paire est trouvée, les valeurs sont retirées de la table.   
-  if (array[index1] == array[index2]) {
-    //on enlève d'abord l'index le plus haut afin de ne pas changer la valeur de l'index le plus bas une fois qu'il est oté
-    if (index1 > index2) {
-      array.splice(index1, 1)
-      array.splice(index2, 1)
-    } 
-    else {
-      array.splice(index2, 1)
-      array.splice(index1, 1)
-    }    
-  }      
-    alert(array)
-
-  return array
+//Le clic révèle la face de la carte en enlevant la classe du background. Le nombre de clic est limité à 2
+function revealCards(counter, array) {   
+    $("#memory-card-grid").on("click", ".memory-card", (function() {
+      $(this).removeClass(`${themeSelection.val()}`)
+        //on ajoute la carte dans un tableau
+        let carte = $(this)
+        array.push(carte) 
+        counter++             
+        if (counter < 2) {
+          revealCards(counter, array)      
+        } else if (array[0].attr("class") === array[1].attr("class")) {                 
+          setTimeout(function() {
+           $(array[0]).hide()
+           $(array[1]).hide()
+           addFoundPairs(array[0].attr("class"))      
+           array = []     
+           counter = 0            
+           realPairsCounter--
+          }, 1000)                
+        //Sinon la classe du background est remise 
+        } else {          
+          setTimeout(function() {        
+          $(array[0]).addClass(`${themeSelection.val()}`)
+          $(array[1]).addClass(`${themeSelection.val()}`)
+          array = []
+          counter = 0          
+            }, 1000)          
+          }                  
+      }))     
 }
+  
 
-/*newTurn(table)*/
+
+      
+
+
+
+
+
+
+
+
+
+
 
