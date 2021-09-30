@@ -11,6 +11,7 @@ const themeSelection = $("#theme-selection")
 const buttonLetsGo = $("#button-lets-go")
 const pairsNumber = $("#pairs-selection")
 const foundPairs = $("#found-pairs-grid-1")
+const clicCounter = $("#clic-counter")
 
 //La zone de jeu est initialisée avec le nombre de cartes correspondant aux paires et au thème choisis
 function createGrid(nbPairs) {   
@@ -29,11 +30,6 @@ function createGrid(nbPairs) {
  }
 }
 
-//La paire trouvée est ajoutée dans la zone du joueur
-function addFoundPairs(card) {
-  foundPairs.html(`<div class ='col d-flex justify-content-center'><div class = ${card}></div></div>`)
-  
-}
 
 // Fisher-Yates Shuffle
 function shuffle(array) {
@@ -79,63 +75,74 @@ $("#button-lets-go").on("click", function () {
 let realPairsCounter
 let revealed = []
 let counter = 0
+let clicks = 0
+
 
 
 //la partie démarre et enchaîne les tours jusqu'à ce qu'il n'y ait plus de paire à trouver
 function gameBegins () {
-  realPairsCounter = pairsNumber.val()
-  turn()   
+  realPairsCounter = pairsNumber.val()  
+  revealCards()
+} 
+
+//Le clic révèle la face de la carte en enlevant la classe du background. 
+function revealCards() { 
+  $("#memory-card-grid").on("click", ".memory-card", (function() {
+    $(this).removeClass(`${themeSelection.val()}`)
+    //on regarde si deux cartes sont retournées, puis si elles sont identiques
+    checkIfPair($(this))  
+    //on incrémente le compteur de coups
+    clicksCounter()  
+  }))  
 }
 
-function turn () {
-  if (realPairsCounter > 0) {
-  revealCards(counter, revealed) 
-  }
+function checkIfPair (obj) {
+  //on ajoute la carte dans un tableau
+  revealed.push(obj)  
+  counter++       
+  //Le nombre de clic est limité à 2      
+  if (counter > 1) {   
+    console.log(revealed)       
+   if (revealed[0].attr("class") === revealed[1].attr("class")) {    
+    //Si la classe correspond, on fait disparaître les cartes tout en conservant leur position dans la grille             
+    setTimeout(function() {
+     $(revealed[0]).hide()
+     $(revealed[1]).hide()
+     addFoundPairs(revealed[0].attr("class"))    
+     revealed = []     
+     counter = 0            
+     realPairsCounter--
+    }, 750)           
+  //Sinon la classe du background est remise 
+  } else {
+    setTimeout(function() {        
+    $(revealed[0]).addClass(`${themeSelection.val()}`)
+    $(revealed[1]).addClass(`${themeSelection.val()}`)
+    revealed = []
+    counter = 0          
+      }, 750)          
+    }  
+  }     
+  console.log(counter)              
 }
 
 
-
-//Le clic révèle la face de la carte en enlevant la classe du background. Le nombre de clic est limité à 2
-function revealCards(counter, array) {   
-    $("#memory-card-grid").on("click", ".memory-card", (function() {
-      $(this).removeClass(`${themeSelection.val()}`)
-        //on ajoute la carte dans un tableau
-        let carte = $(this)
-        array.push(carte) 
-        counter++             
-        if (counter < 2) {
-          revealCards(counter, array)      
-        } else if (array[0].attr("class") === array[1].attr("class")) {                 
-          setTimeout(function() {
-           $(array[0]).hide()
-           $(array[1]).hide()
-           addFoundPairs(array[0].attr("class"))      
-           array = []     
-           counter = 0            
-           realPairsCounter--
-          }, 1000)                
-        //Sinon la classe du background est remise 
-        } else {          
-          setTimeout(function() {        
-          $(array[0]).addClass(`${themeSelection.val()}`)
-          $(array[1]).addClass(`${themeSelection.val()}`)
-          array = []
-          counter = 0          
-            }, 1000)          
-          }                  
-      }))     
-}
+//La paire trouvée est ajoutée dans la zone du joueur
+function addFoundPairs(card) {
+  foundPairs.append('<div class = "col d-flex justify-content-center"><div class = "' + card + '"></div></div>')
   
+}
+      
+function clicksCounter () {
+  clicks++
+  clicCounter.text(clicks) 
+}
+
+
+
 
 
       
-
-
-
-
-
-
-
 
 
 
