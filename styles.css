@@ -12,12 +12,6 @@ h1 {
   src: url("/Ressources/Polices/Californian FB/Californian\ FB\ Bold.ttf")
 }
 
-
-
-/*.col  {
-  border: 1px solid;
-}*/
-
 .memory-card {
   z-index: 6;
   border: 1px solid wheat;
@@ -103,7 +97,9 @@ h1 {
 }
 
 #logo {
-  min-height: 5rem;   
+   
+  min-width: 5rem;
+  max-width: 10rem;
 }
 
 /*----Title----*/

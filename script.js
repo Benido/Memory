@@ -2,7 +2,11 @@
 //La page lance une modale au chargement
 $(window).on("load",function(){
   $("#start-modal").modal("show")
-  ;
+  /*if (window.innerWidth < 1024) {
+    console.log('ca marche')
+    $("#nombre-joueurs:last-child").prop("disabled", true)
+  }*/
+  
 })
 
 
@@ -101,17 +105,20 @@ function checkIfPair (obj) {
   revealed.push(obj)  
   counter++       
   //Le nombre de clic est limité à 2      
-  if (counter > 1) {   
-    console.log(revealed)       
+  if (counter > 1) {        
    if (revealed[0].attr("class") === revealed[1].attr("class")) {    
     //Si la classe correspond, on fait disparaître les cartes tout en conservant leur position dans la grille             
     setTimeout(function() {
      $(revealed[0]).hide()
      $(revealed[1]).hide()
      addFoundPairs(revealed[0].attr("class"))    
+     //on vide le tableau, remet le compteur de carte à 0 et 
      revealed = []     
      counter = 0            
      realPairsCounter--
+     if (realPairsCounter === 0) {
+      endgame()
+     }
     }, 750)           
   //Sinon la classe du background est remise 
   } else {
@@ -122,20 +129,25 @@ function checkIfPair (obj) {
     counter = 0          
       }, 750)          
     }  
-  }     
-  console.log(counter)              
+  }                   
 }
 
 
 //La paire trouvée est ajoutée dans la zone du joueur
 function addFoundPairs(card) {
   foundPairs.append('<div class = "col d-flex justify-content-center"><div class = "' + card + '"></div></div>')
-  
 }
       
 function clicksCounter () {
   clicks++
   clicCounter.text(clicks) 
+}
+
+function endgame () {
+  $("#endgame-modal").modal("show")
+  $("#new-game-button").click(function () {
+    location.reload()
+  })
 }
 
 

@@ -27,8 +27,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="start-modal-title" >Nouvelle partie</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="start-modal-title" >Nouvelle partie</h5>        
       </div>
       <div class="modal-body">        
           <div class="row mb-3">
@@ -47,6 +46,8 @@
                 <option value="6">6</option>
                 <option value="7">7</option>
                 <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
               </select>
             </div>
           </div>
@@ -91,7 +92,13 @@
 </div>
 
 <!--endgame modal-->
-<div class="modal fade" id="endgame" tabindex="-1" aria-labelledby="rules-modal-label" aria-hidden="true">
+<div class="modal" 
+     id="endgame-modal" 
+     tabindex="-1" 
+     data-bs-backdrop="static" 
+     data-bs-keyboard="false"
+     aria-labelledby="endgame-modal-label" 
+     aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -102,7 +109,7 @@
       <label for="new-game-button">Voulez-vous lancer une nouvelle partie ?</label>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="new-game-button">C'est parti !</button>          
+        <button type="button" class="btn btn-primary" id="new-game-button">C'est parti !</button>          
       </div>
     </div>
   </div>
@@ -111,7 +118,7 @@
 <header class="container-fluid">   
     <div class="row justify-content-between">
       <div class="col-2 p-3">
-        <a class="" href="#"><img src="Ressources/Images/Logo-Tikiti.png" class="img-fluid" id="logo"></a>
+        <a class="" href="#"><img src="Ressources/Images/Logo-Tikiti.png" id="logo"></a>
       </div>
       <div class="col-1 m-3">
         <h4 data-bs-toggle="modal" data-bs-target="#rules-modal" id="rules"><u>Règles</u></h4>
@@ -123,7 +130,7 @@
     <div class="row justify-content-around pb-5">
       <h1 class="text-center"><span id="bigger-font">m</span><span id="rotate30">e</span>mory</h1>
     </div>    
-    <section class="container-fluid">
+    <section class="col-lg-8 col-xl-7 container-fluid">
       <div class="row row-cols-3 row-cols-sm-4 row-cols-lg-6 justify-content-center gy-3" id="memory-card-grid">
                 
        
