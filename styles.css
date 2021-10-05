@@ -15,10 +15,28 @@ h1 {
 .memory-card {
   z-index: 6;
   border: 1px solid wheat;
-  height: 100px;
-  width: 100px;    
+  height: 120px;
+  width: 120px;
   background-size: contain;
-  transition: transform 0.3s; 
+ transition: transform 0.3s;  
+}
+
+.empty-space {
+  border:none; 
+}
+
+@media screen and (min-width: 601px) and (max-width: 1600px){
+  .memory-card {    
+    height: 90px;
+    width: 90px;
+  }
+}  
+ 
+@media screen and (max-width: 600px) {
+  .memory-card {
+    height: 70px;
+    width: 70px;
+  }
 }
 
 .memory-card:hover {
@@ -30,34 +48,35 @@ h1 {
 .f1 {
   background-image: url("Ressources/Images/Paires/1.jpg");
 }
-
 .f2 {
   background-image: url("Ressources/Images/Paires/2.jpg");
 }
-
 .f3 {
   background-image: url("Ressources/Images/Paires/3.jpg");
 }
-
 .f4 {
   background-image: url("Ressources/Images/Paires/4.jpg");
 }
-
 .f5 {
   background-image: url("Ressources/Images/Paires/5.jpg");
 }
-
 .f6 {
   background-image: url("Ressources/Images/Paires/6.jpg");
 }
-
 .f7 {
   background-image: url("Ressources/Images/Paires/7.jpg");
 }
-
 .f8 {
   background-image: url("Ressources/Images/Paires/8.jpg");
 }
+.f9 {
+  background-image: url("Ressources/Images/Paires/9.jpg");
+}
+
+.f10 {
+  background-image: url("Ressources/Images/Paires/10.jpg");
+}
+
 
 
 

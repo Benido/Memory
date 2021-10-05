@@ -2,11 +2,9 @@
 //La page lance une modale au chargement
 $(window).on("load",function(){
   $("#start-modal").modal("show")
-  /*if (window.innerWidth < 1024) {
-    console.log('ca marche')
-    $("#nombre-joueurs:last-child").prop("disabled", true)
-  }*/
-  
+  if (window.innerWidth < 1024) {   
+    $("#2joueurs").attr("disabled", "disabled")
+  }
 })
 
 
@@ -61,14 +59,14 @@ function newTable(nbCartes) {
   return newTable
 }
 
-//Attribue à chaque carte une valeur de la table
+//Attribue à chaque carte une valeur de la table et lie l'image correspondante
 function giveNumber(randomizedTable) {
   for (let i = 0; i < randomizedTable.length; i++) {  
   $("#memory-card-grid > div > .memory-card").eq(i).addClass(`f${randomizedTable[i]}`)
   }
 }
 
-//A la fermeture de la modale de lancement, la grille de carte est initialisée
+//A la fermeture de la modale de lancement, la grille de cartes est initialisée
 $("#button-lets-go").on("click", function () {
   createGrid(pairsNumber.val())
   let table = newTable(pairsNumber.val())
@@ -109,13 +107,15 @@ function checkIfPair (obj) {
    if (revealed[0].attr("class") === revealed[1].attr("class")) {    
     //Si la classe correspond, on fait disparaître les cartes tout en conservant leur position dans la grille             
     setTimeout(function() {
-     $(revealed[0]).hide()
-     $(revealed[1]).hide()
-     addFoundPairs(revealed[0].attr("class"))    
-     //on vide le tableau, remet le compteur de carte à 0 et 
+     addFoundPairs(revealed[0].attr("class"))
+     $(revealed[0]).removeClass("shadow f1 f2 f3 f4 f5 f6 f7 f8 f9 f10").addClass("empty-space")
+     $(revealed[1]).removeClass("shadow f1 f2 f3 f4 f5 f6 f7 f8 f9 f10").addClass("empty-space")
+         
+     //on vide le tableau, remet le compteur de carte à 0 et décrémente le compteur de paires
      revealed = []     
      counter = 0            
      realPairsCounter--
+     //quand le compteur de paires est à zéro on propose de relancer une partie
      if (realPairsCounter === 0) {
       endgame()
      }
@@ -143,6 +143,7 @@ function clicksCounter () {
   clicCounter.text(clicks) 
 }
 
+//lance la modale de fin de partie
 function endgame () {
   $("#endgame-modal").modal("show")
   $("#new-game-button").click(function () {

@@ -30,12 +30,12 @@
         <h5 class="modal-title" id="start-modal-title" >Nouvelle partie</h5>        
       </div>
       <div class="modal-body">        
-          <div class="row mb-3">
-            <label for="nombre-joueurs" class="col-sm-4">Nombre de joueurs</label>
-            <div class="col-sm-2 btn-group me-2" role="group" aria-label="Second group" id="nombre-joueurs">
-              <button type="button" class="btn btn-primary">1</button>
-              <button type="button" class="btn btn-primary">2</button>
-            </div>  
+          <div class="row row-cols-3 mb-3">    
+            <label for="pairs-selection" class="col-sm-4">Nombre de joueurs</label>        
+            <input type="radio" class=" btn-check" name="options" id="1joueur" autocomplete="off" checked>
+            <label class="btn btn-primary" for="1joueur">1 joueur</label>
+            <input type="radio" class=" btn-check" name="options" id="2joueurs" autocomplete="off">
+            <label class="btn btn-primary" for="2joueurs">2 joueurs</label>
           </div>
           <div class="row mb-3">
             <label for="pairs-selection" class="col-sm-4">Nombre de paires</label>
@@ -130,18 +130,16 @@
     <div class="row justify-content-around pb-5">
       <h1 class="text-center"><span id="bigger-font">m</span><span id="rotate30">e</span>mory</h1>
     </div>    
-    <section class="col-lg-8 col-xl-7 container-fluid">
-      <div class="row row-cols-3 row-cols-sm-4 row-cols-lg-6 justify-content-center gy-3" id="memory-card-grid">
-                
-       
+    <section class="col-lg-7 col-xl-6 container-fluid">
+      <div class="row row-cols-auto justify-content-center gy-3" id="memory-card-grid">
       </div>
-      <div class="row row-cols-auto p-3 mt-3"> 
+      <div class="row row-cols-auto p-3 my-3"> 
         <div class="col">Nombre de coups :</div>
         <div id="clic-counter" class="counter col shadow-sm">0</div>
       </div>
     </section> 
     <section class="container-fluid">
-     <div class="row row-cols-3 row-cols-sm-4 row-cols-lg-6 justify-content-center gy-3" id="found-pairs-grid-1">
+     <div class="row row-cols-auto justify-content-center gy-3" id="found-pairs-grid-1">
 
     </div>      
       
