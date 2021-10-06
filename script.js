@@ -16,6 +16,7 @@ const foundPairs = $("#found-pairs-grid-1")
 const clicCounter = $("#clic-counter")
 
 //La zone de jeu est initialisée avec le nombre de cartes correspondant aux paires et au thème choisis
+//mettre en jQuery ?
 function createGrid(nbPairs) {   
 
  for (let i=0; i < nbPairs * 2; i++)  {
@@ -66,7 +67,7 @@ function giveNumber(randomizedTable) {
   }
 }
 
-//A la fermeture de la modale de lancement, la grille de cartes est initialisée
+//A la fermeture de la modale de lancement, la grille de cartes est initialisée et la partie commence
 $("#button-lets-go").on("click", function () {
   createGrid(pairsNumber.val())
   let table = newTable(pairsNumber.val())
@@ -81,16 +82,16 @@ let clicks = 0
 
 
 
-//la partie démarre et enchaîne les tours jusqu'à ce qu'il n'y ait plus de paire à trouver
+//la partie enchaîne les tours jusqu'à ce qu'il n'y ait plus de paires à trouver
 function gameBegins () {
   realPairsCounter = pairsNumber.val()  
   revealCards()
 } 
 
-//Le clic révèle la face de la carte en enlevant la classe du background. 
+//Le clic révèle la face de la carte en enlevant la classe du background et on rend la carte non-cliquable.
 function revealCards() { 
   $("#memory-card-grid").on("click", ".memory-card", (function() {
-    $(this).removeClass(`${themeSelection.val()}`)
+    $(this).removeClass(`${themeSelection.val()}`).addClass("no-click")
     //on regarde si deux cartes sont retournées, puis si elles sont identiques
     checkIfPair($(this))  
     //on incrémente le compteur de coups
@@ -103,9 +104,11 @@ function checkIfPair (obj) {
   revealed.push(obj)  
   counter++       
   //Le nombre de clic est limité à 2      
-  if (counter > 1) {        
+  if (counter > 1) {       
+     cardsGrid.addClass("no-click")
    if (revealed[0].attr("class") === revealed[1].attr("class")) {    
-    //Si la classe correspond, on fait disparaître les cartes tout en conservant leur position dans la grille             
+    //Si la classe correspond, on fait disparaître les cartes tout en conservant leur position dans la grille.
+    //On ajoute également la carte dans la zone des paires trouvées.             
     setTimeout(function() {
      addFoundPairs(revealed[0].attr("class"))
      $(revealed[0]).removeClass("shadow f1 f2 f3 f4 f5 f6 f7 f8 f9 f10").addClass("empty-space")
@@ -115,6 +118,7 @@ function checkIfPair (obj) {
      revealed = []     
      counter = 0            
      realPairsCounter--
+     cardsGrid.removeClass("no-click")
      //quand le compteur de paires est à zéro on propose de relancer une partie
      if (realPairsCounter === 0) {
       endgame()
@@ -123,10 +127,11 @@ function checkIfPair (obj) {
   //Sinon la classe du background est remise 
   } else {
     setTimeout(function() {        
-    $(revealed[0]).addClass(`${themeSelection.val()}`)
-    $(revealed[1]).addClass(`${themeSelection.val()}`)
+    $(revealed[0]).addClass(`${themeSelection.val()}`).removeClass("no-click")
+    $(revealed[1]).addClass(`${themeSelection.val()}`).removeClass("no-click")
     revealed = []
-    counter = 0          
+    counter = 0    
+    cardsGrid.removeClass("no-click")      
       }, 750)          
     }  
   }                   
