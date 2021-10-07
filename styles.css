@@ -48,6 +48,23 @@ h1 {
   pointer-events: none;
 }
 
+.found-pairs {
+  border: 1px solid wheat;
+  height: 100px;
+  width: 100px;   
+  background: white;
+  background-size: contain;
+}
+
+.counter {
+  background-color: white;
+  max-width: 50px;  
+}
+
+.current-player {
+  background-color: rgba(245, 222, 179, 0.5);
+}
+
 /*----Faces----*/
 .f1 {
   background-image: url("Ressources/Images/Paires/1.jpg");
@@ -106,18 +123,8 @@ h1 {
   background-image: url("Ressources/Images/Fonds/black.jpg");
 }
 
-.found-pairs {
-  border: 1px solid wheat;
-  height: 100px;
-  width: 100px;   
-  background: white;
-  background-size: contain;
-}
 
-.counter {
-  background-color: white;
-  max-width: 50px;  
-}
+
 
 #logo {
    
@@ -143,4 +150,12 @@ h1 {
 
 #rules:hover {
   transform: scale(1.1);
+}
+
+#player-1, #player-2 {
+  border: 1px solid rgba(245, 222, 179, 0.5)
+}
+
+#player-2 {
+  display: none;
 }

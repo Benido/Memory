@@ -129,25 +129,30 @@
 <main class="container-fluid">
     <div class="row justify-content-around pb-5">
       <h1 class="text-center"><span id="bigger-font">m</span><span id="rotate30">e</span>mory</h1>
-    </div>    
+    </div>  
+    
     <section class="col-lg-7 col-xl-6 container-fluid">
-      <div class="row row-cols-auto justify-content-center gy-3" id="memory-card-grid">
-      </div>
-      <div class="row row-cols-auto p-3 my-3"> 
+      <div class="row row-cols-auto p-3 mb-3"> 
         <div class="col">Nombre de coups :</div>
         <div id="clic-counter" class="counter col shadow-sm">0</div>
+      </div>  
+      <div class="row row-cols-auto justify-content-center gy-3 mb-5" id="memory-card-grid">
       </div>
     </section> 
-    <section class="container-fluid">
-     <div class="row row-cols-auto justify-content-center gy-3" id="found-pairs-grid-1">
-
-    </div>      
-      
+    <section class="container-fluid row justify-content-evenly gx-5">
+      <div class="col">
+        <div id="player-1" class="p-3 current-player">
+          <h4 class="text-center pb-3">Joueur 1</h4>
+          <div class="row row-cols-auto justify-content-center gy-3" id="found-pairs-player-1"></div> 
+        </div>  
+      </div>          
+     <div class="col">
+       <div id="player-2" class= "p-3">
+         <h4 class="text-center pb-3">Joueur 2</h4>
+         <div class="row row-cols-auto justify-content-center gy-3" id="found-pairs-player-2"></div> 
+       </div>  
+    </div>       
     </section>     
-
-      </div>
-    </div>
-
   </main>
   <footer></footer> 
   <script

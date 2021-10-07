@@ -9,10 +9,10 @@ $(window).on("load",function(){
 
 
 const cardsGrid = $("#memory-card-grid")
+const player2 = $("#player-2")
 const themeSelection = $("#theme-selection")
 const buttonLetsGo = $("#button-lets-go")
 const pairsNumber = $("#pairs-selection")
-const foundPairs = $("#found-pairs-grid-1")
 const clicCounter = $("#clic-counter")
 
 //La zone de jeu est initialisée avec le nombre de cartes correspondant aux paires et au thème choisis
@@ -69,9 +69,13 @@ function giveNumber(randomizedTable) {
 
 //A la fermeture de la modale de lancement, la grille de cartes est initialisée et la partie commence
 $("#button-lets-go").on("click", function () {
+  const playersNumber = document.getElementById("2joueurs")
+  if (playersNumber.checked) {
+    player2.show()
+  }
   createGrid(pairsNumber.val())
   let table = newTable(pairsNumber.val())
-  giveNumber(table)
+  giveNumber(table)  
   gameBegins()
 })
 
@@ -79,6 +83,7 @@ let realPairsCounter
 let revealed = []
 let counter = 0
 let clicks = 0
+let currentPlayer = 1
 
 
 
@@ -118,6 +123,7 @@ function checkIfPair (obj) {
      revealed = []     
      counter = 0            
      realPairsCounter--
+     markCurrentPlayer()
      cardsGrid.removeClass("no-click")
      //quand le compteur de paires est à zéro on propose de relancer une partie
      if (realPairsCounter === 0) {
@@ -131,21 +137,31 @@ function checkIfPair (obj) {
     $(revealed[1]).addClass(`${themeSelection.val()}`).removeClass("no-click")
     revealed = []
     counter = 0    
-    cardsGrid.removeClass("no-click")      
+    markCurrentPlayer()
+    cardsGrid.removeClass("no-click")    
       }, 750)          
     }  
+    
   }                   
 }
 
 
 //La paire trouvée est ajoutée dans la zone du joueur
 function addFoundPairs(card) {
-  foundPairs.append('<div class = "col d-flex justify-content-center"><div class = "' + card + '"></div></div>')
+
+ $(`#found-pairs-player-${currentPlayer}`).append('<div class = "col d-flex justify-content-center"><div class = "' + card + '"></div></div>') 
 }
       
 function clicksCounter () {
   clicks++
   clicCounter.text(clicks) 
+}
+
+function markCurrentPlayer () {
+  $(`#player-${currentPlayer}`).removeClass("current-player")
+  currentPlayer === 1 ? currentPlayer = 2 : currentPlayer = 1 
+  $(`#player-${currentPlayer}`).addClass("current-player")
+  
 }
 
 //lance la modale de fin de partie
