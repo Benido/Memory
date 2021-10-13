@@ -61,6 +61,10 @@ h1 {
   max-width: 50px;  
 }
 
+.player-box {
+  border: 1px solid rgba(245, 222, 179, 0.5)
+}
+
 .current-player {
   background-color: rgba(245, 222, 179, 0.5);
 }
@@ -150,10 +154,6 @@ h1 {
 
 #rules:hover {
   transform: scale(1.1);
-}
-
-#player-1, #player-2 {
-  border: 1px solid rgba(245, 222, 179, 0.5)
 }
 
 #player-2 {

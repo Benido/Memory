@@ -20,19 +20,13 @@ const clicCounter = $("#clic-counter")
 function createGrid(nbPairs) {   
 
  for (let i=0; i < nbPairs * 2; i++)  {
-   let wrapper = document.createElement("div")
-   wrapper.classList.add("col")
-   wrapper.classList.add("d-flex")
-   wrapper.classList.add("justify-content-center")
-   let card = document.createElement("div")
-   card.classList.add("memory-card")
-   card.classList.add(themeSelection.val())
-   card.classList.add("shadow")
-   wrapper.append(card)
-   cardsGrid.append(wrapper)
- }
-}
-
+  cardsGrid.append(
+    `<div class="col d-flex justify-content-center">
+      <div class="memory-card shadow ${themeSelection.val()}"></div>
+    </div>`
+    )
+  }
+}    
 
 // Fisher-Yates Shuffle
 function shuffle(array) {
@@ -123,8 +117,10 @@ function checkIfPair (obj) {
      revealed = []     
      counter = 0            
      realPairsCounter--
-     markCurrentPlayer()
      cardsGrid.removeClass("no-click")
+     if ($("#2joueurs").is( ":checked" )) {
+      changeCurrentPlayer()
+     }
      //quand le compteur de paires est à zéro on propose de relancer une partie
      if (realPairsCounter === 0) {
       endgame()
@@ -137,14 +133,14 @@ function checkIfPair (obj) {
     $(revealed[1]).addClass(`${themeSelection.val()}`).removeClass("no-click")
     revealed = []
     counter = 0    
-    markCurrentPlayer()
-    cardsGrid.removeClass("no-click")    
+    cardsGrid.removeClass("no-click")   
+    if ($("#2joueurs").is( ":checked" )) {
+      changeCurrentPlayer()
+    } 
       }, 750)          
     }  
-    
   }                   
 }
-
 
 //La paire trouvée est ajoutée dans la zone du joueur
 function addFoundPairs(card) {
@@ -157,10 +153,10 @@ function clicksCounter () {
   clicCounter.text(clicks) 
 }
 
-function markCurrentPlayer () {
-  $(`#player-${currentPlayer}`).removeClass("current-player")
+function changeCurrentPlayer () {
+  $(`#player-${currentPlayer} div`).first().removeClass("current-player")
   currentPlayer === 1 ? currentPlayer = 2 : currentPlayer = 1 
-  $(`#player-${currentPlayer}`).addClass("current-player")
+  $(`#player-${currentPlayer} div`).first().addClass("current-player")
   
 }
 
